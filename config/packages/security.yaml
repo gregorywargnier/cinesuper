@@ -16,8 +16,16 @@ security:
             security: false
         main:
             anonymous: lazy
-
+            guard:
+                authenticators:
+                    - App\Security\AppAuthenticator
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+            logout:
+                path: logout
+                target: home
 
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/dashboard, roles: ROLE_USER }
