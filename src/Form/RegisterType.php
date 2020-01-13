@@ -3,18 +3,36 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class RegisterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName')
-            ->add('lastName')
-            ->add('email')
-            ->add('password')
+            ->add('firstName', TextType::class, [
+                "label" => "Firstname",
+            ])
+            ->add('lastName', TextType::class, [
+                "label" => "LastName",
+            ])
+            ->add('email', EmailType::class, [
+                "label" => "Email",
+            ])
+            ->add('password', PasswordType::class, [
+                "label" => "Password",
+                "constraints" => [
+                    new Regex([
+                        "pattern" => "/^\S+$/",
+                        "message" => "Don't use spaces in your password."
+                    ])
+                ]
+            ])
         ;
     }
 
@@ -22,6 +40,7 @@ class RegisterType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            "csrf_protection" => true,
         ]);
     }
 }
