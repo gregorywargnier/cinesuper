@@ -29,6 +29,10 @@ class UserController extends AbstractController
      */
     public function register( Request $request ): Response
     {
+        if( $this->getUser() ){
+            return $this->redirectToRoute('dashboard');
+        }
+
         $user = new User();
         $form = $this->createForm( RegisterType::class, $user );
 
@@ -62,11 +66,16 @@ class UserController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if( $this->getUser() ){
+            $this->addFlash('info', 'Vous êtes déjà connecté(e)');
             return $this->redirectToRoute('dashboard');
         }
 
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
+
+        if ($error) {
+             $this->addFlash( 'danger', $error->getMessage() );
+        }
 
         return $this->render('user/login.html.twig', array(
             'last_username' => $lastUsername,
