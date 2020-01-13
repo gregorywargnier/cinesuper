@@ -18,7 +18,7 @@ main{
 .navbar-primary{
     background-color: $primary!important;
 
-    a{
+    .navbar-brand{
         font-size: 1.8rem;
         color: $light;
     }
