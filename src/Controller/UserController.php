@@ -72,6 +72,10 @@ class UserController extends AbstractController
 
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
+        
+        if ($error) {
+             $this->addFlash( 'danger', 'Les champs renseignés ne sont pas valide' );
+        }
 
         return $this->render('user/login.html.twig', array(
             'last_username' => $lastUsername,
