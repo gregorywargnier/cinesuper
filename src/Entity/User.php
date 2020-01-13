@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -19,6 +20,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Unique(message="Ooops, tt seems that a user is already registered with the same email address.")
      */
     private $email;
 
@@ -30,16 +32,37 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Length(
+     *     min=8,
+     *     max=30,
+     *     minMessage="Your password must be more than 7 characters.",
+     *     maxMessage="Your password must be less than 31 characters."
+     * )
+     * @Assert\NotBlank()
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Assert\Length(
+     *     min=3,
+     *     max=80,
+     *     minMessage="Your firstname must be more than 2 characters.",
+     *     maxMessage="Your firstname must be less than 81 characters."
+     * )
+     * @Assert\NotBlank()
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Assert\Length(
+     *     min=3,
+     *     max=80,
+     *     minMessage="Your lastname must be more than 2 characters.",
+     *     maxMessage="Your lastname must be less than 81 characters."
+     * )
+     * @Assert\NotBlank()
      */
     private $lastName;
 
