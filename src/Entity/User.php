@@ -35,8 +35,8 @@ class User implements UserInterface
      * @Assert\Length(
      *     min=8,
      *     max=30,
-     *     minMessage="Your password must be more than 7 characters.",
-     *     maxMessage="Your password must be less than 31 characters."
+     *     minMessage="Your password must be at least {{ limit }} characters long.",
+     *     maxMessage="Your password cannot be longer than {{ limit }} characters."
      * )
      * @Assert\NotBlank()
      */
@@ -47,8 +47,8 @@ class User implements UserInterface
      * @Assert\Length(
      *     min=3,
      *     max=80,
-     *     minMessage="Your firstname must be more than 2 characters.",
-     *     maxMessage="Your firstname must be less than 81 characters."
+     *     minMessage="Your firstname must be at least {{ limit }} characters long.",
+     *     maxMessage="Your firstname cannot be longer than {{ limit }} characters."
      * )
      * @Assert\NotBlank()
      */
@@ -59,8 +59,8 @@ class User implements UserInterface
      * @Assert\Length(
      *     min=3,
      *     max=80,
-     *     minMessage="Your lastname must be more than 2 characters.",
-     *     maxMessage="Your lastname must be less than 81 characters."
+     *     minMessage="Your lastname must be at least {{ limit }} characters long.",
+     *     maxMessage="Your lastname cannot be longer than {{ limit }} characters."
      * )
      * @Assert\NotBlank()
      */
