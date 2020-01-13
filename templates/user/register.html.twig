@@ -3,13 +3,25 @@
 {% block title %}Inscription - {{ parent() }}{% endblock %}
 
 {% block content %}
-    {{ form_start( form ) }}
+    <div class="container">
+        
+            <div class="form">
+            {{ form_start( form ) }}
 
-    {{ form_row( form.firstName ) }}
-    {{ form_row( form.lastName ) }}
-    {{ form_row( form.email ) }}
-    {{ form_row( form.password ) }}
+            {{ form_row( form.firstName ) }}
+            {{ form_row( form.lastName ) }}
+            <div class="ml-4 pl-2">
+                {{ form_row( form.email ) }}
+            </div>
+            <div class="pl-1">
+                {{ form_row( form.password ) }}
+            </div>
+            
 
-    <button type="submit" class="btn btn-primary">Inscription</button>
-    {{ form_end( form ) }}
+
+            <button type="submit" class="btn btn-primary">Inscription</button>
+            {{ form_end( form ) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}
