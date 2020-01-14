@@ -1,22 +1,24 @@
 <?php
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Entity\Card;
 use App\Entity\User;
 use App\Form\RegisterType;
-use App\Service\MailerService;
 use App\Service\UserService;
+use App\Service\MailerService;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
     private $encoder;
     private $userService;
     private $mailer;
+    private $voucher;
 
     public function __construct( UserPasswordEncoderInterface $encoder, MailerService $mailer, UserService $userService ){
         $this->encoder = $encoder;
@@ -101,6 +103,11 @@ class UserController extends AbstractController
      */
     public function dashboard()
     {
-        return new Response('bonjour');
+        return $this->render('user/dashboard.html.twig', array(
+            
+        ));
+        
     }
+
+    
 }
