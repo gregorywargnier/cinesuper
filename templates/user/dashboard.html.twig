@@ -3,79 +3,50 @@
 {% block title %}dashboard - {{ parent() }}{% endblock %}
 
 {% block content %}
-
-
-<div class="card">
-    <div class="card-body text-center mb-2">
-        {{app.user.roles[0]}}
-    </div>
-  </div>
+{# {{ dump(app.user.card) }} #}
 <div class="container">
-    <div class="col-10">
-        <div class=" d-flex flex-nowrap mt-5">
-            <div class="col-xl-3 col-md-6 mb-4 ">
-                <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 text-center">nom</div>
-                        <div class="h6 mt-5 pt-2 text-center font-weight-bold text-gray-800">{{app.user.lastName }}</div>
-                    </div>
-                    <div class="col mr-2">
-                        <div class="text-xs text-center font-weight-bold text-primary text-uppercase mb-1">Prenom</div>
-                        <div class="h6 mt-5 pt-2 text-center font-weight-bold text-gray-800">{{app.user.firstName }}</div>
-                    </div>
+    <div class="dash mt-5 ml-5">
+        <div class="row text-center">
+            <div class="col-6">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title text-primary">Nom</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">{{app.user.lastName }}</h6>
                     </div>
                 </div>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title text-primary">Prénom</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">{{app.user.firstName }}</h6>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title text-primary">Email</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">{{app.user.email}}</h6>
+                    </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-md-6 mb-4 ">
-                <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                    <div class="col mr-4">
-                        <div class="text-xs text-center font-weight-bold text-primary text-uppercase mb-1">email</div>
-                        <div class="h6 mt-5 pt-2 font-weight-bold text-gray-800">{{app.user.email}}</div>
-                    </div>
+            <div class="col-6">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title text-primary">Carte de fidelité créée le :</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">{{app.user.createdAt|date('d/m/Y')}}</h6>
                     </div>
                 </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs text-center font-weight-bold text-primary text-uppercase mb-1">carte de fidelité crée le :</div>
-                        <div class="h6 mt-4 pt-2 font-weight-bold text-center text-gray-800">{{app.user.createdAt|date('d/m/Y')}}</div>
-                    </div>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title text-primary">Numéro de carte</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">{{app.user.card.number}}</h6>
                     </div>
                 </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs text-center font-weight-bold text-primary text-uppercase mb-1">Votre numero d'adherent est le :</div>
-                        <div class="h6 mt-2 font-weight-bold text-gray-800">{{app.user.card.number}}</div>
-                    </div>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title text-primary">Voucher</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">{{app.user.card.vouchers|length}}</h6>
                     </div>
                 </div>
-                </div>
-            </div>
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <div class="text-xs text-center font-weight-bold text-primary text-uppercase mb-1">Historique </div>
-                    <div class="h6 mt-5 font-weight-bold text-center text-gray-800">{{app.user.card.fidelity}}</div>
-                </div>
-                </div>
-            </div>
-            </div>
+            </div>  
         </div>
     </div>
 </div>

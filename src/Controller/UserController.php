@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Entity\Card;
 use App\Entity\User;
 use App\Form\RegisterType;
 use App\Service\UserService;
@@ -18,7 +17,6 @@ class UserController extends AbstractController
     private $encoder;
     private $userService;
     private $mailer;
-    private $voucher;
 
     public function __construct( UserPasswordEncoderInterface $encoder, MailerService $mailer, UserService $userService ){
         $this->encoder = $encoder;
@@ -103,9 +101,7 @@ class UserController extends AbstractController
      */
     public function dashboard()
     {
-        return $this->render('user/dashboard.html.twig', array(
-            
-        ));
+        return $this->render('user/dashboard.html.twig');
         
     }
 
